@@ -51,13 +51,15 @@ STEP 8 : Stop.
 ### Program: 
 ```
 import collections
-def fun(n):
-   stack = collections.deque([])
-   a=int(input())
-   for i in range (a):
-         x=stack.append(int(input()))
-     print(f"Stack before rotation {stack}") stack.rotate(n)
-print(f"Stack after rotation {stack}")
+def fun(r):
+    de = collections.deque([])
+    n=int(input())
+    for i in range(n):
+        de.append(float(input()))
+    print("Stack before rotation",de)
+    de.rotate(r)
+    print("Stack after rotation",de)
+
 ```
 ### Output:
 ![image](https://github.com/user-attachments/assets/f42c4ec6-578c-418a-8f66-cf70abe7dc54)
@@ -67,34 +69,38 @@ print(f"Stack after rotation {stack}")
 
 
 EX: 10.3 QUEUE
-### Aim: To Write a python program to implement the stack using deque method for rotating the stack.
+
+### Aim: To Write a python program to add only the even unique numbers using appendleft() from n given numbers. 
+
 ### Algorithm:
+STEP 1:Initialize a set unique_evens to store unique even numbers.
+STEP 2:Initialize a deque result to store the final sequence.
+STEP 3:Iterate through the given list of numbers
+STEP 4:Check if the number is even (num % 2 == 0).
+STEP 5:Check if the number is not already in unique_evens.
+STEP 6:If both conditions are met, add the number to unique_evens.
+STEP 7:Use appendleft() to insert it at the front of result.
+STEP 8:Return the final deque containing only unique even numbers in reverse order of their appearance.
 
-STEP 1: Start.
-
-STEP 2: Import collections and import deque.
-
-STEP 3: Create a stack and a variable n.
-
-STEP 4: Get the number of inputs from user.
-
-STEP 5: Using a loop get the inputs from user.
-
-STEP 6: Append the even and unique elements in the stack.
-
-STEP 7: Print the result.
 ### Program:
 ```
-import collections
-stack = collections.deque([])
-n = int(input())
+from collections import deque
+class Queue:
+    def __init__(self):
+        self.queue = deque()
+    def add_element(self,val):
+        if val%2==0 and val not in self.queue:
+            self.queue.appendleft(val)
+            return True
+        return False
+TheQueue=Queue()
+n=int(input())
 for i in range(n):
-       x = int(input())
-        if x not in stack:
-          if x%2==0:
-             stack.appendleft(x)
-print(stack)
+    TheQueue.add_element(int(input()))
+print(TheQueue.queue)
+
 ```
+
 ### Output:
 ![image](https://github.com/user-attachments/assets/de6e3e09-b10b-42d4-9faf-32fcf990f29a)
  
@@ -102,34 +108,43 @@ print(stack)
 
 
 ### EX: 10.4 IMPLEMENTATION OF QUEUE
-### Aim: To Develop a python program to get the 4 integer values from user and display the values using multiprocessing library
+
+### Aim: To Develop a python program to Reverse values in Queue.
+
 ### Algorithm:
 
-STEP 1: Start.
+STEP 1:Start.
+STEP 2:Initialize an empty stack to temporarily store the elements.
+STEP 3:Dequeue all elements from the queue and push them onto the stack.
+STEP 4:Pop elements from the stack one by one and enqueue them back into the queue.
+STEP 5:Return the queue, now with reversed elements.
+STEP 6:Print the result.
+STEP 7:Stop.
 
-STEP 2: From Multiprocessing Import Queue.
-
-STEP 3: Create a list and get the input from user.
-
-STEP 4 : Append the elements in the list.
-
-STEP 5: Using 'get' built-in function print the list.
-
-STEP 6 : Print the result.
-
-STEP 7 : Stop.
 ### Program:
 ```
-from multiprocessing import Queue
-queue = Queue()
-for i in range(4):
-    queue.put(int(input()))
-for i in range(4):
-     print(queue.get())
+import queue
+q1=queue.Queue()
+for i in range(5):
+    q1.put(int(input()))
+    
+def reverseQueue(q1src,q2dest):
+    buffer=q1src.get()
+    if (q1src.empty()==False):
+        reverseQueue(q1src,q2dest)
+    q2dest.put(buffer)
+    return q2dest
+    
+q2dest=queue.Queue()
+qReversed=reverseQueue(q1,q2dest)
+
+while (qReversed.empty()==False):
+    print(qReversed.queue[0])
+    qReversed.get()
+ 
 ```
 ### Output:
- ![image](https://github.com/user-attachments/assets/26a380ff-118e-43f4-8178-83a5417262b5)
- 
+![image](https://github.com/user-attachments/assets/f8e67e5a-a732-4987-a55f-4e7429e8bd98)
 
 ### Result: Thus, the given program is implemented and executed successfully .
  
